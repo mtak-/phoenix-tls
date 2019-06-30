@@ -41,16 +41,19 @@ phoenix_tls! {
 }
 
 fn main() {
-    let main_id = THREAD.get().id;
+    let main_id = THREAD.handle().id;
     println!("main id: {}", main_id);
 
-    assert_eq!(main_id, THREAD.get().id);
+    assert_eq!(main_id, THREAD.handle().id);
     std::thread::spawn(move || {
-        let this_id = THREAD.get().id;
+        println!("num threads: {}", THREAD_LIST.lock().unwrap().len());
+        let this_id = THREAD.handle().id;
         println!("other id: {}", this_id);
+        println!("num threads: {}", THREAD_LIST.lock().unwrap().len());
         assert_ne!(main_id, this_id);
-        assert_eq!(this_id, THREAD.get().id);
+        assert_eq!(this_id, THREAD.handle().id);
     })
     .join()
     .unwrap();
+    println!("num threads: {}", THREAD_LIST.lock().unwrap().len())
 }

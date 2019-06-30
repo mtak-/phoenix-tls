@@ -1,8 +1,15 @@
 [package]
 name = "phoenix-tls"
 version = "0.1.0"
-authors = ["tyler <tyler@brainiumstudios.com>"]
+license = "MIT/Apache-2.0"
+authors = ["mtak-"]
 edition = "2018"
+keywords = ["tls", "thread-local", "synchronization", "multithreading"]
+categories = ["concurrency"]
+description = "Utilities for creating always present thread locals."
+repository = "https://github.com/mtak-/phoenix-tls"
+homepage = "https://github.com/mtak-/phoenix-tls"
+documentation = "https://docs.rs/phoenix-tls"
 
 [features]
 default = ["std"]
@@ -10,8 +17,8 @@ nightly = ["nudge/nightly"]
 std = ["nudge/std"]
 
 [dependencies]
-cfg-if = "0.1.9"
-nudge = "0.1.0"
+cfg-if = "1.0"
+nudge = "0.2"
 
 [dev-dependencies]
 lazy_static = "1.3.0"
